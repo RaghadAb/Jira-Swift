@@ -21,8 +21,6 @@ public struct Issue : Codable {
         case fields
     }
     
-    
-    
     public struct Fields : Codable {
         
         let epic: String?
@@ -30,6 +28,7 @@ public struct Issue : Codable {
         var fixVersions: [FixVersion]?
         public let assignee: Assignee?
         public var description : String?
+        public var issueType : IssueType
         
         enum CodingKeys : String, CodingKey {
             case epic = "customfield_10017"
@@ -37,6 +36,7 @@ public struct Issue : Codable {
             case fixVersions
             case assignee
             case description
+            case issueType = "issuetype"
         }
     }
     
@@ -49,7 +49,17 @@ public struct Issue : Codable {
         }
     }
     
+    public struct IssueType : Codable {
+        public var id: String = ""
+        public var name: String = ""
+        public var description: String = ""
+        public var iconUrl : String
+        
+        enum CodingKeys : String, CodingKey {
+            case id
+            case name
+            case description
+            case iconUrl
+        }
+    }
 }
-
-
-
